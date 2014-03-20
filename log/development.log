@@ -7854,3 +7854,939 @@ Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-19 23:44:33
 
 
 Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-19 23:44:33 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('strayhud@gmail.com') LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (7.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20140319012054)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140319012054"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddIndexToUsersEmail (20140319014010)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140319014010"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddPasswordDigestToUsers (20140319014825)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD "password_digest" varchar(255)[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140319014825"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddRememberTokenToUsers (20140319183851)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD "remember_token" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_users_on_remember_token" ON "users" ("remember_token")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140319183851"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+Migrating to AddAdminToUsers (20140319193241)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "admin" boolean DEFAULT 'f'
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140319193241"]]
+  [1m[35m (0.4ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('strayhud@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (9.5ms)[0m  [1mINSERT INTO "users" ("admin", "created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["admin", true], ["created_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00], ["email", "strayhud@gmail.com"], ["name", "Steve Hudson"], ["password_digest", "$2a$10$XF3THL6d3MbFTsBJsRfy8OLI71KwXSmd99YRbjD2Rq4auEx5GS65W"], ["remember_token", "beb99ade23660b95d08a5a9cebd59741c90f3417"], ["updated_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user1@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00], ["email", "user1@gmail.com"], ["name", "Ms. Travon Robel"], ["password_digest", "$2a$10$ShO/W0jdUFPAHrlECkkdtupjavEE094SQEUmsnmBdPSTveAyjBf8S"], ["remember_token", "61c76b906e7e8151ee801648cfd62096b048d0b9"], ["updated_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user2@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00], ["email", "user2@gmail.com"], ["name", "Sherman Mitchell"], ["password_digest", "$2a$10$fpKA9AVzWUpy0HpwOPLDR.85c2fyZR/XmSBm.qJXKsPEQLdMJHSEe"], ["remember_token", "3ce1dc9e876870cacbf847004825fbbd4881d3f3"], ["updated_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user3@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00], ["email", "user3@gmail.com"], ["name", "Maximo Pfeffer PhD"], ["password_digest", "$2a$10$WsIyCVkCkiZ.gBbbGQBBuutj2SzDcblI/QkqR/DIS0Nn8I/D2wdae"], ["remember_token", "40bef483b3c246170887ec2c6879ff52bcf971d7"], ["updated_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user4@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00], ["email", "user4@gmail.com"], ["name", "Orie Tromp"], ["password_digest", "$2a$10$SMlh217VY1oOaJQR7PxE0.y42FO2My3sTo9OMn9rr0Wx6OWW4PODu"], ["remember_token", "943588d555aeab6a7542d8e9177c374c3734ebd1"], ["updated_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user5@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00], ["email", "user5@gmail.com"], ["name", "Candido Gutmann"], ["password_digest", "$2a$10$n0rFLxnE8B8gYfrV0XqLCeB7Ud7UfwL2V7QASpL40l6j/HwBA8UZq"], ["remember_token", "a7529cfcbafba60c59f2b95406e2cbca38873309"], ["updated_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user6@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00], ["email", "user6@gmail.com"], ["name", "Arely Cormier"], ["password_digest", "$2a$10$ge5lhKa9/Bt2GElklJ4rweq8TZLfgAlZ2sNca472./77ZlAYV7usi"], ["remember_token", "28a8712a4f00c0b7f2fb311b25ef5a089341bcce"], ["updated_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user7@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00], ["email", "user7@gmail.com"], ["name", "Ramiro Denesik II"], ["password_digest", "$2a$10$7iAVQMN172k0ARhsgkCOLOlmkV6o6OWdazLMkHxmwGrG5Gpv0TofO"], ["remember_token", "b4c8798102a1c70e96e74213c377e401b4500e7f"], ["updated_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user8@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00], ["email", "user8@gmail.com"], ["name", "Celestino Botsford"], ["password_digest", "$2a$10$Lkc6a04wJjjZv5liLGoXqu7vRSLaBGZH8EO7xG9JgYLRsS1shqVU."], ["remember_token", "26729b80de69225652309a461138434718598713"], ["updated_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user9@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00], ["email", "user9@gmail.com"], ["name", "Mr. Mekhi Haley"], ["password_digest", "$2a$10$NLZ.QBOY4/qzCdwh4y2GS.31vYp3ApR4714LLfF07m3Qj8XbKrT2a"], ["remember_token", "2eddfb7ec0ba7ea998f0ffdc5835335a8b495e0b"], ["updated_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user10@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00], ["email", "user10@gmail.com"], ["name", "Turner Daniel"], ["password_digest", "$2a$10$Zn0hX7StUa.tHVGkLCXx1OPO3tfXWgggil3r4wqot5V19yxLIhC1e"], ["remember_token", "f810e1f121c9e96e5d155606c48d83cd56acfe18"], ["updated_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user11@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00], ["email", "user11@gmail.com"], ["name", "Isaiah Schmitt"], ["password_digest", "$2a$10$f6shq8E22LMo.dxfoPR91OepSJUQE9OxKgn6Nc5aSssr150PhyQSe"], ["remember_token", "c57e9225aeedc359035c9d03908f532957c93a7d"], ["updated_at", Thu, 20 Mar 2014 04:04:52 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user12@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00], ["email", "user12@gmail.com"], ["name", "Luigi Runte"], ["password_digest", "$2a$10$HyvaBuWSEycRB03xpWWBpu4zqbGi6pSoo3cfxPtGYu1UbTWAenlXy"], ["remember_token", "b2136487d5bfa1a955ed7b0bdbd271e77194d527"], ["updated_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user13@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00], ["email", "user13@gmail.com"], ["name", "Ova Glover"], ["password_digest", "$2a$10$cmlxu/GiD7HMA0P4LhCSAejPRSf7LeA6k97jW187TYk6jR1D07Xo."], ["remember_token", "16984d18b6ad34a912fcc81e7aeef465d95c4cd2"], ["updated_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user14@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00], ["email", "user14@gmail.com"], ["name", "Santina McGlynn"], ["password_digest", "$2a$10$IBK1/Qk6b8RwEzSuime3QO.jIC1u.C891GSJIjuM0lnl3Hxc9vaSq"], ["remember_token", "8d123bd8bbd4c8631daed9ffb41ff5a09a81c999"], ["updated_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user15@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00], ["email", "user15@gmail.com"], ["name", "Jordon Harber"], ["password_digest", "$2a$10$orr.rhHoK.47BXTrV1cC.uluEn5hRL3I8S9e0Dw4/70M3Bt9cmSpm"], ["remember_token", "77767b8ae31a104bfffd29a8906aff3384cde1b8"], ["updated_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user16@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00], ["email", "user16@gmail.com"], ["name", "Elwin Hegmann"], ["password_digest", "$2a$10$h84W.LhYcUeBPzHAZLnGK.rQlfAzpItH2HBw0tGPDN6V9S/.2mP3q"], ["remember_token", "a8185d38d3e3340e9a8895c9ce3f681ea8e314aa"], ["updated_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user17@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00], ["email", "user17@gmail.com"], ["name", "Theresa McClure"], ["password_digest", "$2a$10$5GB0zXjMD/IOYSN2617II.oHq5eMrBHKPCC88zwYUSt7e0i4/Ydbm"], ["remember_token", "6cbe62594e303074657faf8e5490a802f7d133bf"], ["updated_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user18@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00], ["email", "user18@gmail.com"], ["name", "Patrick Kshlerin"], ["password_digest", "$2a$10$qJ7aZwvd7VNAZcCivU95qOawq8UbgxuiyNOHBotb8px6JEGEQsd8C"], ["remember_token", "7245d41883ac41b8bb5ba2899bac3ada1954d0a3"], ["updated_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user19@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00], ["email", "user19@gmail.com"], ["name", "Bill Johnson"], ["password_digest", "$2a$10$KksuTh1gDVFG8E7YA4gUguPer8zHAXsGVYbCNxRyh.wpW1RCKflea"], ["remember_token", "58ece88c72365a3e75c7ef939bbed08af3503cb6"], ["updated_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user20@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00], ["email", "user20@gmail.com"], ["name", "Jensen Cole"], ["password_digest", "$2a$10$.hJKC8wMAmvAoZVAj2Q3heClf//KZ1f/8NRtcoUfIFOS5g.ZGNHZa"], ["remember_token", "1291e487a3dcf65ae549e7178ab72a74636752ef"], ["updated_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user21@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00], ["email", "user21@gmail.com"], ["name", "Antoinette Wintheiser"], ["password_digest", "$2a$10$JraZG4oQIQUMHES/c0ihiOzFzRgbe4.fmJbJNNGCaS7HzAG3Np79a"], ["remember_token", "0a6caf89c263845587522a896f9333acc9d4e85b"], ["updated_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user22@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00], ["email", "user22@gmail.com"], ["name", "Marcel Stiedemann"], ["password_digest", "$2a$10$GqRXH9v.kuVIbtV/7mtwN.2B5rV.2G567Aq2NPm9MuBiKnIpqgOwO"], ["remember_token", "14803a9e66b2492bf8a0e033c45c5b95543ed1bc"], ["updated_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user23@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00], ["email", "user23@gmail.com"], ["name", "Savannah Bednar"], ["password_digest", "$2a$10$/v3m3EQnO7ma6emUDy08PujXJ8iZbdIwAgHjNaVPWkEy02ZmunIQe"], ["remember_token", "7e6453095bd647f4cc584a914a1e8d8a5ca48156"], ["updated_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user24@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00], ["email", "user24@gmail.com"], ["name", "Angel Stiedemann"], ["password_digest", "$2a$10$VB8/ogyQMCZEge9InAH8wu5N7ZyuH9DnLJ.THT/e599yjeUm7pEC."], ["remember_token", "e3407ba6ff9dc0eb14dd8421874a323bd11b8662"], ["updated_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user25@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00], ["email", "user25@gmail.com"], ["name", "Osbaldo Marks"], ["password_digest", "$2a$10$eOCs.y8b1cN01TshU9dY0OAz6eng4bQRZvOow39FArmFTOe6W8txS"], ["remember_token", "ec071a6bafdfb7858979eb7a56898025a569418b"], ["updated_at", Thu, 20 Mar 2014 04:04:53 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user26@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user26@gmail.com"], ["name", "Lamar Weber"], ["password_digest", "$2a$10$pHfCMECNTdik4cYNvIDHO.l0TbQls6U59bZNLe2Wef49W20UFm5pi"], ["remember_token", "61ee0dafc8be281ac0f69c52b4454f0537363a39"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user27@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user27@gmail.com"], ["name", "Johnpaul Senger"], ["password_digest", "$2a$10$YYPZEVTMVXGaBIC4ATuXP.A0OujtcKvYJJrERSbOoMgSdNiaGPBLm"], ["remember_token", "9f20f86605dcb2704847098187987dda40cd400c"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user28@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user28@gmail.com"], ["name", "Carey Klein V"], ["password_digest", "$2a$10$xNBmC1gwswiYS7oVCZoDzOXXDe3GQm5utTYQS0MQCbmmWih4fXFnW"], ["remember_token", "74b6922be3399d72e73bd0034cf50ba03d45b84f"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user29@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user29@gmail.com"], ["name", "Major Greenfelder"], ["password_digest", "$2a$10$/3HXweotf4gg0a0ol4DLc.bDgMNMdVvb8BOv1quDoKCsglfhljwia"], ["remember_token", "935994f1b0bcad6d91f24205e26c417ba80178d4"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user30@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user30@gmail.com"], ["name", "Merl Murphy"], ["password_digest", "$2a$10$39SnTKDNjOv9j6mTsWqxF.85H2V./DMxDBSfDlnEcTRYrbhvLNLZ6"], ["remember_token", "c3c5e5ffa7d9856ae3c5ced73f20649d33eda259"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user31@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user31@gmail.com"], ["name", "Ladarius Lakin"], ["password_digest", "$2a$10$RRoFexqHTHtl4FU3IeXAq.PNfY6VepRCvABh6i3XuGCXOTaFKZigq"], ["remember_token", "c8f141ca6ad7bb8f40c0d0230be2732b63d8945a"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user32@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user32@gmail.com"], ["name", "Yessenia Watsica"], ["password_digest", "$2a$10$dR2YoH73sdau4gpxWCBxUeZVqMstFWYWX1ES6j8P30zevqHNwBQnK"], ["remember_token", "aa5c7d4a275b7ee35a366b694a1314bb283591e9"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user33@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user33@gmail.com"], ["name", "Marcelina Klein"], ["password_digest", "$2a$10$IbhCL1Gh/LZGZq00aa5WJ.Q.D/Y2clt6IB/BkPyZzUuznkA1Dv8gG"], ["remember_token", "d6a218c707f8c3f93776061740e233227d665473"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user34@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user34@gmail.com"], ["name", "Kennith Gerlach DDS"], ["password_digest", "$2a$10$Lga.pvMOhMGovBFyxHxsk.CNVBIVLeJo/EYuy7JVqbkeTKOprdKD2"], ["remember_token", "410c272cfec9c373fe79e266f6eaa974ebad79a8"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user35@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user35@gmail.com"], ["name", "Emelia Williamson"], ["password_digest", "$2a$10$aNOkRrlgzPDmaErIgbGbhu2O6E3mweppQeTLBx2UL1SUbLoXFYlSS"], ["remember_token", "58c1107e0be4cfe28537f467eb08b054e7fc56eb"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user36@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user36@gmail.com"], ["name", "Mr. Tess Thiel"], ["password_digest", "$2a$10$y/PwahFCWxNaxXs3r/iihO/jtTCZsF32.iyzdvWHnVG6fYN491OcC"], ["remember_token", "f69b27482cf329feb40f8fd2d2b5ba2f0206385f"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user37@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user37@gmail.com"], ["name", "Amiya Hessel I"], ["password_digest", "$2a$10$VF7IN/6/2Y5R57gxZcuTTeTHbP.A6NaFAzex5LMIe4TI2rm9mINZK"], ["remember_token", "a51233218e87a9354c7b768e1740834cb3f8dc2c"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user38@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user38@gmail.com"], ["name", "Humberto Braun"], ["password_digest", "$2a$10$PAxNFmsAwb2hqizQy2UtY.f/3plJeQM7rko7RVwVzCJj4OonI0bJy"], ["remember_token", "5ada44f5c40055a35605d0ccae1526696dcd5201"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user39@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user39@gmail.com"], ["name", "Mary Batz"], ["password_digest", "$2a$10$Std3XWpgJJK9gUH7n1Sou.J7IS4dsXDgswwTkaQm0X8u1qefLTYTu"], ["remember_token", "0f5a1fceba06569ebfe6f785a158acff66aac997"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user40@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user40@gmail.com"], ["name", "Arlene Vandervort"], ["password_digest", "$2a$10$sqNUU/loZu.zwn0WtIGOiOz8svphBtoS2yrKOBUFGgQaFcVz.SUbG"], ["remember_token", "0a3bf021fa0c8ff13dbf815edd416e9a841a0eb7"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user41@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00], ["email", "user41@gmail.com"], ["name", "Kara Marks III"], ["password_digest", "$2a$10$J3D3EHm6bbJu2/6EbdvSP.KbDyivDI3mC1.PjktTnAKYS8kSMqGQC"], ["remember_token", "a329fbd464f72efd6b097df2acee20f4cbe7ee2c"], ["updated_at", Thu, 20 Mar 2014 04:04:54 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user42@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00], ["email", "user42@gmail.com"], ["name", "Isaac Mitchell V"], ["password_digest", "$2a$10$sURZbPIxhMtybRU8NEjUz.DWwDy8zF5DSH5yLtJZputjPWQMjp4Sq"], ["remember_token", "071f908de2eca26904c79a2132149b82e37d1ed3"], ["updated_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user43@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00], ["email", "user43@gmail.com"], ["name", "Margarette Ortiz"], ["password_digest", "$2a$10$wsFfpMa4JLvsbRuONOmxyOtgEny6QFlz8u2Pj0nonJy6N0U1s7S2e"], ["remember_token", "c875f13a0826f49c1d115b8069797153e10b5953"], ["updated_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user44@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00], ["email", "user44@gmail.com"], ["name", "Dr. Melyssa Trantow"], ["password_digest", "$2a$10$aSRdQiU/cVxYaZQNvJ5wd.XWpiuGzAs9xOs66P98yK8OcJ3YyJ35C"], ["remember_token", "25877b049be892fa62457873cba1a703199f2417"], ["updated_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user45@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00], ["email", "user45@gmail.com"], ["name", "Karley Goyette"], ["password_digest", "$2a$10$l/X46aedexia.CBWw/qUSuKCjTeOJhhX0GuqM2hHVD2AOJN3VkKku"], ["remember_token", "018b45bab909db385aa03003885ed0068b3989e1"], ["updated_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user46@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00], ["email", "user46@gmail.com"], ["name", "Annabelle Wuckert"], ["password_digest", "$2a$10$Dw2n71OPlAGsfOisNa0iDOv0Xj6MJdKEBF1S3LPF8hziHjL4UuHsa"], ["remember_token", "d2a69faa1972fd2c6149332a48b6e0405f48bb96"], ["updated_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user47@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00], ["email", "user47@gmail.com"], ["name", "Delphine Ryan PhD"], ["password_digest", "$2a$10$OeTlYUDPl8LPwlw4hQQJHOqgOXdKUg2WeQI2ZJOnrn.x3IDMV6eJi"], ["remember_token", "fefa5efd9509b03018ba301be14e4148205daa24"], ["updated_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user48@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00], ["email", "user48@gmail.com"], ["name", "Darryl Friesen"], ["password_digest", "$2a$10$TsWxSmpssfgPg4GDh80ACeL8j6KPS5PwNsFHJ9CJKpEZWM8fhIuya"], ["remember_token", "c218ece08ead416814d4c478009f986176febb9b"], ["updated_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user49@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00], ["email", "user49@gmail.com"], ["name", "Tanner Dicki"], ["password_digest", "$2a$10$SeRk1K3Xc5Bn5ZqDxjR5zuV7DOzXqdlj6.bl989DVbP9doMPwsEd2"], ["remember_token", "2f6633229ba02df71bd2ef13030c30d8a694bb16"], ["updated_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user50@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00], ["email", "user50@gmail.com"], ["name", "Katherine Rath"], ["password_digest", "$2a$10$i2cZcWtzCIKjCajb/DeIKu2Ax0NJHNTNmCbvzdf.r8Wi2UX7f0G.i"], ["remember_token", "bb3559a0124e8112e45ce98ed762b6c4c81f0d22"], ["updated_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user51@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00], ["email", "user51@gmail.com"], ["name", "Mrs. Rodolfo Ruecker"], ["password_digest", "$2a$10$lOYipUpc2BCtX0fU3S4F6uylonBRFqTNYwC0HPdkYr.0vFe7fl2aq"], ["remember_token", "541d607ad9b7ff9f6302c2842a2ce784f94d1206"], ["updated_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user52@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00], ["email", "user52@gmail.com"], ["name", "Janiya Rogahn"], ["password_digest", "$2a$10$pTPrkBBBnNcSXbRi3Bluz.piFmJ3LbjvxWncyqu/W.eMqIVb913vu"], ["remember_token", "6c5d558de8a77abf23e4a26f6ecb880a19b9a3df"], ["updated_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user53@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00], ["email", "user53@gmail.com"], ["name", "Maribel Veum"], ["password_digest", "$2a$10$T9iSf43X/y6jBdSl7WtMROa4/otUdON0gEJMjVLmhbhUkx.D.mQuO"], ["remember_token", "fb2ff2d6b475e65fb3222844ba9bc6fbf5402b01"], ["updated_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user54@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00], ["email", "user54@gmail.com"], ["name", "Dr. Jessyca Hessel"], ["password_digest", "$2a$10$j9Q9k2Mpblh8XtbZQz0ey.gbm0pNlwaNiS/2YwxFFnVjW0EscYDGC"], ["remember_token", "3a7acb8dbeb804ad7624d2fd39745b971f5607bb"], ["updated_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user55@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00], ["email", "user55@gmail.com"], ["name", "Guadalupe Mayert"], ["password_digest", "$2a$10$ZZjRcQ.AUrqPIMmYD7ul5uPo8uD5JsdjmH9i7HP7ycQmfpPg7/kWK"], ["remember_token", "0f27f45642b1769f5ee3d1b3275f6e0f4a748fc0"], ["updated_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user56@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00], ["email", "user56@gmail.com"], ["name", "Mary Kilback"], ["password_digest", "$2a$10$MIjfafx4zkYttOBJIdZ5QuXwR6UbFAszQdCqHYI0L3663LkGvWWSW"], ["remember_token", "db3e3af6a3993c96a24e3875ee7cfcaae89f9928"], ["updated_at", Thu, 20 Mar 2014 04:04:55 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user57@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00], ["email", "user57@gmail.com"], ["name", "Jeremy Mosciski PhD"], ["password_digest", "$2a$10$tMJ83rQIPM8JJT1FxqnYVeonnmrCD7s14cqFnUgm8nLlQ2P3qyqeO"], ["remember_token", "141629343017a7864abe9b6d40ed02957cda2398"], ["updated_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user58@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00], ["email", "user58@gmail.com"], ["name", "Alize Boyle PhD"], ["password_digest", "$2a$10$hqkAglcBIkAbt61KoGosvOU2z2kHXt.ikuxXEhAMyITS.53oU.eMi"], ["remember_token", "c3221813b359942c8766e6ba7b677a26d75c5af5"], ["updated_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user59@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00], ["email", "user59@gmail.com"], ["name", "Dr. Justus Pacocha"], ["password_digest", "$2a$10$K11WwlvgDf5k9E2oJxxXD.IDy47xxCfCpRxNvIgoEztjUFKNb5d0a"], ["remember_token", "832b67a3edbe9f06746dd77aba443a37d9e38e21"], ["updated_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user60@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00], ["email", "user60@gmail.com"], ["name", "Keyshawn Lubowitz"], ["password_digest", "$2a$10$7HDVzt5TCvKC0dCdQySWrObWO2dhJTFKwvoRTcoFQTR0H/d3ABPHq"], ["remember_token", "18ccacb0aaeb07be418c4573d2dfe8b419907746"], ["updated_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user61@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00], ["email", "user61@gmail.com"], ["name", "Olin Waters MD"], ["password_digest", "$2a$10$ivLIM6ehB1QwkUzBhe.bdejtTk4lA6VHRTmkdxEzhNZ2ZFkB6GQs."], ["remember_token", "27abaea24b3e0c5cf1b4aac6fb7de984c8c37968"], ["updated_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user62@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00], ["email", "user62@gmail.com"], ["name", "Benjamin Lind IV"], ["password_digest", "$2a$10$nEOaN/hZqkpvfAr0u92fEuuUhW9dmYBuFCDaZmFynnp5r3EEPFwze"], ["remember_token", "3825a8e0d0eca78795ce5a739095db7b2f86c410"], ["updated_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user63@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00], ["email", "user63@gmail.com"], ["name", "Gene Purdy"], ["password_digest", "$2a$10$Pd8EQHP.CuA68ZVOf2pTIeCtZ8dmmooWCig5FwiRe23biMQ2wuvl2"], ["remember_token", "ba00753b7828f03ff7942652c6cf02f812a5c085"], ["updated_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user64@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00], ["email", "user64@gmail.com"], ["name", "Caitlyn Legros"], ["password_digest", "$2a$10$XTMPMV7gfeQzE8YYLN1p5erSxEyioOb8bJVTgt9L4mkhDjpa04Cke"], ["remember_token", "4379643f66cf42f83dd2d4a51d3fd159b1a164bb"], ["updated_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user65@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00], ["email", "user65@gmail.com"], ["name", "Mr. Abigail Schiller"], ["password_digest", "$2a$10$xjPfV.uACMlYJL7kYtfiLu8GcC/msKU0Y2PCF.MrwAu6nlkxsk9lK"], ["remember_token", "c10d234adbdc09958d81d07bb7838336aefc2f28"], ["updated_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user66@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00], ["email", "user66@gmail.com"], ["name", "Elisabeth Bahringer V"], ["password_digest", "$2a$10$1U7iMihDKt1V3LnM9ppo0eLAaqdcDYghklbbs/VKJvK0ZhuLPGsKG"], ["remember_token", "9ba1e6fc5adbad80e7a945796902e23a941ca35a"], ["updated_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user67@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00], ["email", "user67@gmail.com"], ["name", "Mrs. Emmanuel Hayes"], ["password_digest", "$2a$10$pO1qvBGU7Yvz2h2Q.XElPeWJwg6rvoARUMJ4xZbQAsdiJef9Q0ZSW"], ["remember_token", "6ed7b6a5ef1e5f7c24b7082b57adbb53b11682e0"], ["updated_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user68@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00], ["email", "user68@gmail.com"], ["name", "Herminio Marvin II"], ["password_digest", "$2a$10$Ee0bagBThHgvgBzre0cR9O4/lTYenJJoSKEpIQMlztxJX.8CjYRIS"], ["remember_token", "32e682a9becbd49713145dab76cae2faf76f946d"], ["updated_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user69@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00], ["email", "user69@gmail.com"], ["name", "Mekhi Dietrich"], ["password_digest", "$2a$10$hMHJkS3LlXsjUgZa916nYeCUA.sKb4J3DH3CJ.pBepChg4HucHlp."], ["remember_token", "b6c9fb4bdc385c7175970fdeec27686d28c564ed"], ["updated_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user70@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00], ["email", "user70@gmail.com"], ["name", "Precious Leuschke"], ["password_digest", "$2a$10$xWUImJc/rUd3mW53KloJkexW02dbEO3jeG71j2ac7bllqJuCkLvaq"], ["remember_token", "3929de8027920d9e61b21f0e8f5a352bb13184fd"], ["updated_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user71@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00], ["email", "user71@gmail.com"], ["name", "Dr. Janessa Turcotte"], ["password_digest", "$2a$10$UQ2L984WMx4Xqehf6HD4dOSSjHt.wc9WBeU7IeSF/KFlCwHq.ERPK"], ["remember_token", "4862fc30a1ec1de0225d955b02984959d1b780cf"], ["updated_at", Thu, 20 Mar 2014 04:04:56 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user72@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user72@gmail.com"], ["name", "Effie Rempel Jr."], ["password_digest", "$2a$10$HDQ9Ceg/852v0YzbWb/zjOoHFs4zAElotzYUeRLNMx6lqfzd7kdhq"], ["remember_token", "368440b0a36253f74909bd7c44b6cc75559afe60"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user73@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user73@gmail.com"], ["name", "Rowan Rogahn II"], ["password_digest", "$2a$10$15djbnWIS92HvKIhpDCVp.y0gN9iptmP0kEDAueLBXIB7qDPxujDS"], ["remember_token", "364bfa00e852bf3f898c815be39d1375a2968181"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user74@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user74@gmail.com"], ["name", "Abel Jaskolski V"], ["password_digest", "$2a$10$Txq4Pb2Ft/Ayji88691VpO4ysgmxH1LKw21q/Gwa4FyrDgPW1yZ4u"], ["remember_token", "3944a7d2d77df9be43a4ba67ff68c86730afc118"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user75@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user75@gmail.com"], ["name", "Stacey Goldner"], ["password_digest", "$2a$10$Z3J06kY5re4E62bTtv9TPO7Hq6MVArY0CMy3vG583DXuOpuX6EB0G"], ["remember_token", "f169bfb590ed20080c1870d8fe5dbfe1465bee94"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user76@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user76@gmail.com"], ["name", "Lacy Marks"], ["password_digest", "$2a$10$GmgJm0OZmnww7MFWsYrgy.oMYJ4a89zS0SdjBlU4iRSBe7GHjDl.e"], ["remember_token", "17e75cceb78c9cc3d68915712221d0eeb9424391"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user77@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user77@gmail.com"], ["name", "Edwina Towne"], ["password_digest", "$2a$10$WK0BGq6J8KwAJtHuh3z.BeuoXgcwHoTNCpaioYkfe2V52hVOeyz.O"], ["remember_token", "b1027938c625e16edc0c8bf6d727551adc812fa3"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user78@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user78@gmail.com"], ["name", "Mr. Candida Rath"], ["password_digest", "$2a$10$oq.LYoGYkRRReICglYjs/uI7sf9ksQr1Lqpd0lD9E1kQPogai4/GG"], ["remember_token", "4eae9b54ebcf5eb422418b280b6c1c8d9509deff"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user79@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user79@gmail.com"], ["name", "Zora Hilll DVM"], ["password_digest", "$2a$10$9cGIS5P2gXJ5X58uObaJwOlaxUVmFByd3X4m8MnBVq7gMySPl8k72"], ["remember_token", "b67ac18f53422f916ccf4ef208bdf3d69776ba77"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user80@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user80@gmail.com"], ["name", "Carley Gaylord"], ["password_digest", "$2a$10$C4qdizjjMLqta56YH3rzt.llaUybr.9/.syw0AwrQXCOU/W90y2ym"], ["remember_token", "7bd8f3182cae7468b3aa604b4f48495365f228b3"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user81@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user81@gmail.com"], ["name", "Ms. Toney Kling"], ["password_digest", "$2a$10$zX6.kKRAktzSin1Xm6sDS.yncuAsuB6BduIkChjBsUOnVAriNz.Hi"], ["remember_token", "4d406940ea0f1cd05afe6d8a65eeeb28d49516ce"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user82@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user82@gmail.com"], ["name", "Meda Rowe"], ["password_digest", "$2a$10$e4mQ.PmouSeklz3HXVIwqubViXUAB68dzmGGx9PCSUr9s4P9AOvIm"], ["remember_token", "912c30019250ce946a900026e3c5e1bcf033f769"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user83@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user83@gmail.com"], ["name", "Eleonore Medhurst"], ["password_digest", "$2a$10$mqB1sDOeKAJ3VgDeP8TDreLdrm6wThMTev6tWLlktTnuZ.Zkat8HC"], ["remember_token", "542c46aa0e8d443fbdc022b585a1ecec6065288c"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user84@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user84@gmail.com"], ["name", "Miss Rosamond Rice"], ["password_digest", "$2a$10$rYbakyK7WP2DLsEZcZBfXuASGg5CAzMd4zGXiDVhKodB51wSlkk8S"], ["remember_token", "852e73fdc262fbbbeea7ac5ca69addf359b027b9"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user85@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user85@gmail.com"], ["name", "Mr. Aimee Fahey"], ["password_digest", "$2a$10$HJpQJAkUl4fAXfqGDi/K.OEmW.LhfmPPKauAhfGeSIU5QrTlrUOs6"], ["remember_token", "5cbe84c8082a732ad34e1b4966bbb628290f51de"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user86@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user86@gmail.com"], ["name", "Peggie Glover MD"], ["password_digest", "$2a$10$x2NZx1SY6EJgePD6q.P3hehzY.DY.GczhmJVi/i4jNhL9u3scrseq"], ["remember_token", "edda0cd71626644668274759ff14b9a0694e1826"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user87@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00], ["email", "user87@gmail.com"], ["name", "Norris Stokes"], ["password_digest", "$2a$10$y6NXBIeR6QPfurZSQeJdse0EiMQDVjJsKmMTHfq6nA7mPly6jSJq6"], ["remember_token", "d0de917e095a8071ea42f7dc99ca9476829746f8"], ["updated_at", Thu, 20 Mar 2014 04:04:57 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user88@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00], ["email", "user88@gmail.com"], ["name", "Hunter Weissnat"], ["password_digest", "$2a$10$jyrlswu3wKuWCuZsU5jcAelz5Asr.jcr7H/y0pr/J3mIWtMcfoA1C"], ["remember_token", "5fd4579e2ef67be08b854c3af47e0e8a166fb247"], ["updated_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user89@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00], ["email", "user89@gmail.com"], ["name", "Aniya Boyle"], ["password_digest", "$2a$10$1SXNo2gUQiBQxzYVFYcKkucxsGvDeFA9vJvdxQgkHkYO4S2AQWRhC"], ["remember_token", "be025220c491f425e3aa33ab92c004f644bbcb84"], ["updated_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user90@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00], ["email", "user90@gmail.com"], ["name", "Duane Bechtelar"], ["password_digest", "$2a$10$ctWKHeClV8VKmDh6c6PRM.uak/QBjJB.YcvL7b6PeyH8VODBc/vgW"], ["remember_token", "6a4d53064bcb9c13099a3088ca9134fb85ea2795"], ["updated_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user91@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00], ["email", "user91@gmail.com"], ["name", "Clovis Cummings"], ["password_digest", "$2a$10$Vgc8QmP603DZpcHlDoewsOboQEnvatPdCC.LzwL8pVE0lS7xqB1rO"], ["remember_token", "317a1d5afd66b446a649fff522afdaf09500efef"], ["updated_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user92@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00], ["email", "user92@gmail.com"], ["name", "Norwood Wiza"], ["password_digest", "$2a$10$xCv72Fd6xbJeCGxFwdGHBuG0t6at3dTt6JMDCfAlhX/ysMSgxJ6Si"], ["remember_token", "aefda8b10b158ba9dbe5266b588d773e534eaa2b"], ["updated_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user93@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00], ["email", "user93@gmail.com"], ["name", "Lizeth Yundt"], ["password_digest", "$2a$10$5caOXB9xNCTv2k3uiCnQIuEWk7vdfFGGfVnbSFSmlob7GMJdIvLhK"], ["remember_token", "c49f2a721baecc99d15350f82ffab54143623ea8"], ["updated_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user94@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00], ["email", "user94@gmail.com"], ["name", "Stewart Greenfelder II"], ["password_digest", "$2a$10$3wZO/kTtjKnV9UMolxMhfOBb3MepUyIpBm.8GeMApHFKRYbHe1KGu"], ["remember_token", "846e2c5a0efe85170617039cb397e76b792cfb52"], ["updated_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user95@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00], ["email", "user95@gmail.com"], ["name", "Emie McLaughlin"], ["password_digest", "$2a$10$vltWd0GD7hsDzh8d.qRbw.g4k95da7irTSExCNVbKGuWUxDg16QsC"], ["remember_token", "7f5d118f8f443695f75c51e8f86f22fe15954c5a"], ["updated_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user96@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00], ["email", "user96@gmail.com"], ["name", "Elinor Koelpin III"], ["password_digest", "$2a$10$qFctTWzoc0wwc38Wy6IadODQj9p2jjuREFGoGKjxHUrg1Sxpn1UJW"], ["remember_token", "861d3ea857092a5849f2794faa03faa2af3626b2"], ["updated_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user97@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00], ["email", "user97@gmail.com"], ["name", "Murl Stanton"], ["password_digest", "$2a$10$BSKCGnTfsOlY.i/ESC59yuBK6zijU/ZcG90B5ci3oHR3cOp0pf/GG"], ["remember_token", "bdcf259ca17ae7c425f75862f4bf34cb46f15658"], ["updated_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user98@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00], ["email", "user98@gmail.com"], ["name", "Virgie Bartoletti"], ["password_digest", "$2a$10$rcKsK5BpA8CExV5V2wbFI.f4jAITbDwGhE2c11SlMBlp8J03Nsyd2"], ["remember_token", "07079408710eb8bda188ec661184700981d25845"], ["updated_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user99@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00], ["email", "user99@gmail.com"], ["name", "Dr. Bertrand Spencer"], ["password_digest", "$2a$10$iqpmoykqt71oEF/7l3iVzub6Ae.Is5iE0jy/Lt5c1Ne.pS.tNgZ4e"], ["remember_token", "287da79993e2fa16bf95373e3d10bcb134ae2327"], ["updated_at", Thu, 20 Mar 2014 04:04:58 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-20 00:05:17 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#home as HTML
+  Rendered static_pages/home.html.erb within layouts/application (2.8ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = '23facf45abb11fde069167011d3ca8e89d85fb8e' LIMIT 1
+  Rendered layouts/_header.html.erb (11.9ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 162ms (Views: 160.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-20 00:05:17 -0400
+Processing by StaticPagesController#home as HTML
+  Rendered static_pages/home.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = '23facf45abb11fde069167011d3ca8e89d85fb8e' LIMIT 1[0m
+  Rendered layouts/_header.html.erb (1.6ms)
+  Rendered layouts/_footer.html.erb (0.9ms)
+Completed 200 OK in 17ms (Views: 16.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/assets/GameDice.png" for 127.0.0.1 at 2014-03-20 00:05:18 -0400
+
+
+Started GET "/signin" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (197.1ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = '23facf45abb11fde069167011d3ca8e89d85fb8e' LIMIT 1
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 210ms (Views: 208.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/signin" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.9ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = '23facf45abb11fde069167011d3ca8e89d85fb8e' LIMIT 1[0m
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 14ms (Views: 13.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:22 -0400
+
+
+Started GET "/news" for 127.0.0.1 at 2014-03-20 00:05:25 -0400
+Processing by StaticPagesController#news as HTML
+  Rendered static_pages/news.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = '23facf45abb11fde069167011d3ca8e89d85fb8e' LIMIT 1
+  Rendered layouts/_header.html.erb (1.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 16ms (Views: 15.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/news" for 127.0.0.1 at 2014-03-20 00:05:25 -0400
+Processing by StaticPagesController#news as HTML
+  Rendered static_pages/news.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = '23facf45abb11fde069167011d3ca8e89d85fb8e' LIMIT 1[0m
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 13ms (Views: 12.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:26 -0400
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+Processing by StaticPagesController#home as HTML
+  Rendered static_pages/home.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = '23facf45abb11fde069167011d3ca8e89d85fb8e' LIMIT 1
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 15ms (Views: 14.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+Processing by StaticPagesController#home as HTML
+  Rendered static_pages/home.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = '23facf45abb11fde069167011d3ca8e89d85fb8e' LIMIT 1[0m
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 12ms (Views: 12.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
+
+
+Started GET "/assets/GameDice.png" for 127.0.0.1 at 2014-03-20 00:05:28 -0400
